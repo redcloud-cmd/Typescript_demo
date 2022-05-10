@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //Interate 原理
+    // let obj = {
+    //     name:"HY",
+    //     age:"18",
+    //     address:"拱墅"
+    // }
+
+    
+
+    //  function Interor (item){
+    //     let ArrKey = Object.keys(item) 
+    //     let i = 0;
+    //     return {
+    //         next : function(){
+    //             let done = (i>=ArrKey.length);
+    //             let value = !done ?item[ArrKey[i++]] : undefined
+    //             return {
+    //                 value:value,
+    //                 done:done
+    //             }
+    //         }
+    //     }
+    //  }
+    //  let iterator = Interor (obj);
+    //  console.log(iterator.next())
+    //  console.log(iterator.next())
+    //  console.log(iterator.next())
+    //  console.log(iterator.next())
+ 
+
+
+    //Generator
+
+    // function sum(n){
+    //     if(n <=2){
+    //         return 1
+    //     }
+    //     return sum(n-2) + sum(n-1)
+    // }
+    // console.log(sum(6))
+
+    //1~100之和
+    // function sum(n){
+    //     if(n===1){
+    //         return 1
+    //     }
+    //     return sum(n-1) * n
+    // }
+    // console.log(sum(4))
+
+    // function power(n,m){
+    //     if(m==1){
+    //         return n
+    //     }
+    //     return power(n,m-1)*n
+    // }
+    // console.log(power(2,5))
+
+    const arrList = [
+    {id: '1', parentId: 'root', name:'1'},
+    {id: '1-1-2', parentId: '1-1', name:'1-1-2'},
+    {id: '1-1', parentId: '1', name:'1-1'},
+    {id: '1-2', parentId: '1', name:'1-2'},
+    {id: '1-1-1', parentId: '1-1', name:'1-1-1'},
+    {id: '1-2-1', parentId: '1-2', name:'1-2-1'}
+];
+function Tree(data,pId){
+    let arrNewList = JSON.parse(JSON.stringify(data))
+    let newList = []
+    for(let i = 0 ;i<arrNewList.length;i++){
+        console.log(1)
+        if(arrNewList[i].parentId==pId){
+            arrNewList[i].children = Tree(arrNewList,arrNewList[i].id)
+            newList.push(arrNewList[i])
+        }
+    }
+    return newList
+}
+console.log(Tree(arrList,"root"),11)
+
+</script>
+</html>
